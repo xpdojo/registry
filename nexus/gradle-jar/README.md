@@ -1,4 +1,4 @@
-# Maven POM
+# Gradle JAR
 
 ## Init
 
