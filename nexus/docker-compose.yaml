@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  local-nexus:
+    image: sonatype/nexus3:3.47.1
+    container_name: local-nexus
+    volumes:
+      # mkdir -p /home/markruler/nexus-data
+      # sudo chown -R 200 /home/markruler/nexus-data
+      - "/home/markruler/nexus-data:/nexus-data"
+    ports:
+      - "8081:8081"
+
+volumes:
+  nexus-data: {}
