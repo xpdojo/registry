@@ -1,0 +1,20 @@
+version: '3.8'
+
+# https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file
+services:
+  docker-registry:
+    container_name: docker-registry
+    image: registry:2.8.1
+    restart: always
+    environment:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data/images
+      # image deletion 활성화
+      REGISTRY_STORAGE_DELETE_ENABLED: true
+      # REGISTRY_HTTP_ADDR: 0.0.0.0:443
+      # REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt
+      # REGISTRY_HTTP_TLS_KEY: /certs/domain.key
+    volumes:
+      - /home/markruler/docker-registry/images:/data/images
+      - /home/markruler/docker-registry/registry:/var/lib/registry
+    ports:
+      - 5000:5000
