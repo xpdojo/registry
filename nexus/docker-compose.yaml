@@ -7,9 +7,16 @@ services:
     volumes:
       # mkdir -p /home/markruler/nexus-data
       # sudo chown -R 200 /home/markruler/nexus-data
-      - "/home/markruler/nexus-data:/nexus-data"
+      # - "/home/markruler/nexus-data:/nexus-data"
+      - "nexus-data:/nexus-data"
     ports:
       - "8081:8081"
+    # https://docs.docker.com/config/containers/resource_constraints/
+    # sudo docker exec local-nexus ulimit -a
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
 
 volumes:
   nexus-data: {}
